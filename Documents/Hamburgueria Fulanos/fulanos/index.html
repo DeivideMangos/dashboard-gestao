@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fulanos Burger</title>
+
+    <!-- Fonte moderna Poppins do Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- JS principal -->
+    <script src="script.js" defer></script>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="imgs/android-chrome-192x192.png"
+    />
+  </head>
+
+  <body>
+    <!-- Toast -->
+    <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+      <img src="imgs/logo.png" alt="Logo Fulanos Hamburgueria" class="logo" />
+      <h1>O Melhor Burguer Defumado!</h1>
+      <p class="slogan">O sabor que vai direto no seu WhatsApp!</p>
+      <a href="#cardapio" class="btn" aria-label="Ver Cardápio">Ver Cardápio</a>
+    </header>
+
+    <main>
+      <section id="cardapio" class="cardapio" aria-label="Cardápio de produtos">
+        <h2>Cardápio</h2>
+
+        <!-- Burgers -->
+        <article class="categoria" aria-labelledby="burgers-title">
+          <h3 id="burgers-title">Burgers</h3>
+
+          <div class="categoria-itens">
+            <div class="item">
+              <img src="imgs/burguer.png" alt="Burger" />
+              <p>
+                <strong>Burger</strong> - R$ 18,00<br /><br />
+                Pão de Brioche, burger defumado 120g (artesanal), blend de
+                queijos, maionese da casa e picles de cebola roxa.
+              </p>
+              <button type="button" onclick="adicionarItem('Burger', 18)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/burguer_salada.png" alt="Burger Salada" />
+              <p>
+                <strong>Burger Salada</strong> - R$ 20,00<br /><br />Pão de
+                Brioche, burger defumado 120g (artesanal), blend de queijos,
+                maionese da casa, picles de cebola roxa, tomate e alface.
+              </p>
+              <button
+                type="button"
+                onclick="adicionarItem('Burger Salada', 20)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/bacon.png" alt="Burger Bacon" />
+              <p>
+                <strong>Burger Bacon</strong> - R$ 21,00<br /><br />Pão de
+                Brioche, burger defumado 120g (artesanal), blend de queijos,
+                maionese da casa, picles de cebola roxa e bacon.
+              </p>
+              <button type="button" onclick="adicionarItem('Burger Bacon', 21)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/pork.png" alt="Pork Burger" />
+              <p>
+                <strong>Pork</strong> - R$ 17,00<br /><br />Pão de Brioche,
+                burger suíno defumado de 120g (artesanal), blend de queijos,
+                maionese da casa e picles de cebola roxa.
+              </p>
+              <button type="button" onclick="adicionarItem('Pork Burger', 17)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/pork_salada.png" alt="Pork Salada" />
+              <p>
+                <strong>Pork Salada</strong> - R$ 19,00<br /><br />Pão de
+                Brioche, burger suíno defumado de 120g (artesanal), blend de
+                queijos, maionese da casa, picles de cebola roxa, tomate e
+                alface.
+              </p>
+              <button type="button" onclick="adicionarItem('Pork Salada', 19)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/pork_bacon.png" alt="Pork Bacon" />
+              <p>
+                <strong>Pork Bacon</strong> - R$ 20,00<br /><br />Pão de
+                Brioche, burger suíno defumado de 120g (artesanal), blend de
+                queijos, maionese da casa, picles de cebola roxa e bacon.
+              </p>
+              <button type="button" onclick="adicionarItem('Pork Bacon', 20)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/chicken.png" alt="Chicken" />
+              <p>
+                <strong>Chicken</strong> - R$ 17,00<br /><br />Pão de Brioche,
+                burger empanado de frango 120g (artesanal), blend de queijos,
+                maionese da casa e picles de cebola roxa.
+              </p>
+              <button type="button" onclick="adicionarItem('Chicken', 17)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/chicken_salada.png" alt="Chicken Salada" />
+              <p>
+                <strong>Chicken Salada</strong> - R$ 19,00<br /><br />Pão de
+                Brioche, burger empanado de frango 120g (artesanal), blend de
+                queijos, maionese da casa, picles de cebola roxa, tomate e
+                alface.
+              </p>
+              <button
+                type="button"
+                onclick="adicionarItem('Chicken Salada', 19)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/chicken_bacon.png" alt="Chicken Bacon" />
+              <p>
+                <strong>Chicken Bacon</strong> - R$ 20,00<br /><br />Pão de
+                Brioche, burger empanado de frango 120g (artesanal), blend de
+                queijos, maionese da casa, picles de cebola roxa e bacon.
+              </p>
+              <button
+                type="button"
+                onclick="adicionarItem('Chicken Bacon', 20)"
+              >
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Combos -->
+        <article class="categoria" aria-labelledby="combos-title">
+          <h3 id="combos-title">Combos</h3>
+          <div class="categoria-itens">
+            <div class="item">
+              <img src="imgs/combo_burguer.png" alt="Combo Burger" />
+              <p>
+                <strong>Combo Burger</strong> - R$ 25,00<br /><br />1 Burger + 1
+                Coca-Cola 200ml ou Guaraná 200ml + 1 porção de batata Crinkle
+                200g
+              </p>
+              <button type="button" onclick="adicionarItem('Combo Burger', 25)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/combo_pork.png" alt="Combo Pork" />
+              <p>
+                <strong>Combo Pork</strong> - R$ 25,00<br /><br />1 Burger suíno
+                + 1 Coca-Cola 200ml ou Guaraná 200ml + 1 porção de batata
+                Crinkle 200g
+              </p>
+              <button type="button" onclick="adicionarItem('Combo Pork', 25)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/combo_chicken.png" alt="Combo Chicken" />
+              <p>
+                <strong>Combo Chicken </strong> - R$ 25,00<br /><br />1 Burger
+                empanado de frango + 1 Coca-Cola 200ml ou Guaraná 200ml + 1
+                porção de batata Crinkle 200g
+              </p>
+              <button
+                type="button"
+                onclick="adicionarItem('Combo Chicken', 25)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <img src="imgs/combo_burger.png" alt="Combo Duplo Burger" />
+              <p>
+                <strong>Combo Duplo Burger</strong> - R$ 55,00<br /><br />2
+                Burgers (Burger, Pork ou Chicken) + 1 Coca-Cola 1L ou Guaraná 1L
+                + 1 porção de batata Crinkle 500g
+              </p>
+              <button
+                type="button"
+                onclick="adicionarItem('Combo Duplo Burger', 55)"
+              >
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Adicionais Gerais -->
+        <article class="categoria" aria-labelledby="adicionais-title">
+          <h3 id="adicionais-title">Adicionais</h3>
+          <div class="categoria-itens">
+            <div class="item">
+              <p><strong>Queijo</strong> - R$ 3,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Adicional Queijo', 3)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Ovo</strong> - R$ 3,00</p>
+              <button type="button" onclick="adicionarItem('Adicional Ovo', 3)">
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Salada</strong> - R$ 3,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Adicional Salada', 3)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Bacon</strong> - R$ 4,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Adicional Bacon', 4)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Burger</strong> - R$ 6,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Adicional Burger', 6)"
+              >
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Porções -->
+        <article class="categoria" aria-labelledby="porcoes-title">
+          <h3 id="porcoes-title">Porções</h3>
+          <div class="categoria-itens">
+            <div class="item">
+              <strong>Batata Crinkle 200g - R$ 12,00</strong>
+              <button
+                type="button"
+                onclick="adicionarItem('Batata Crinkle 200g', 12)"
+              >
+                Adicionar
+              </button>
+            </div>
+
+            <div class="item">
+              <strong>Batata Crinkle 500g - R$ 22,00</strong>
+              <button
+                type="button"
+                onclick="adicionarItem('Batata Crinkle 500g', 22)"
+              >
+                Adicionar
+              </button>
+            </div>
+
+            <div class="item">
+              <img
+                src="imgs/batata_200.png"
+                alt="Batata + Queijo + Bacon 200g"
+              />
+              <strong>Batata + Queijo + Bacon 200g - R$ 17,00</strong>
+              <button
+                type="button"
+                onclick="adicionarItem('Batata + Queijo + Bacon 200g', 17)"
+              >
+                Adicionar
+              </button>
+            </div>
+
+            <div class="item">
+              <img
+                src="imgs/batata_500.png"
+                alt="Batata + Queijo + Bacon 500g"
+              />
+              <strong>Batata + Queijo + Bacon 500g - R$ 32,00</strong>
+              <button
+                type="button"
+                onclick="adicionarItem('Batata + Queijo + Bacon 500g', 32)"
+              >
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Bebidas -->
+        <article class="categoria" aria-labelledby="bebidas-title">
+          <h3 id="bebidas-title">Bebidas</h3>
+          <div class="categoria-itens">
+            <div class="item">
+              <p><strong>Refrigerante 200ml</strong> - R$ 3,50</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Refrigerante 200ml', 3.5)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Refrigerante 350ml</strong> - R$ 6,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Refrigerante 350ml', 6)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Refrigerante 1L</strong> - R$ 9,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Refrigerante 1L', 9)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Refrigerante 2,5L</strong> - R$ 15,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Refrigerante 2,5L', 15)"
+              >
+                Adicionar
+              </button>
+            </div>
+            <div class="item">
+              <p><strong>Suco 500ml</strong> - R$ 8,00</p>
+              <button
+                type="button"
+                onclick="adicionarItem('Suco de Polpa 500ml', 8)"
+              >
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sobremesas -->
+        <article class="categoria" aria-labelledby="sobremesas-title">
+          <h3 id="sobremesas-title">Sobremesas</h3>
+          <div class="categoria-itens">
+            <div class="item">
+              <p>
+                <strong>Pudim 100g</strong> - R$ 5,00<br />Delicioso pudim de
+                leite condensado artesanal.
+              </p>
+              <button
+                type="button"
+                onclick="adicionarItem('Pudim 100g', 5)"
+                aria-label="Adicionar Pudim 100g ao pedido"
+              >
+                Adicionar
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Resumo do Pedido -->
+      <section id="resumo" class="resumo" aria-live="polite" aria-atomic="true">
+        <h2>Resumo do Pedido</h2>
+        <ul id="lista-pedido" aria-label="Itens do pedido"></ul>
+        <p id="total" aria-live="polite">Total: R$ 0,00</p>
+
+        <!-- Tipo de pedido -->
+        <label for="tipo">Tipo de Pedido:</label>
+        <select id="tipo" aria-required="true">
+          <option value="retirada">Retirada</option>
+          <option value="entrega">Entrega</option>
+        </select>
+        <div id="campo-endereco" style="display: none">
+          <label for="endereco">Endereço para entrega:</label>
+          <input
+            type="text"
+            id="endereco"
+            placeholder="Rua, número, bairro, ponto de referência"
+          />
+        </div>
+
+        <!-- Bairro / Taxa -->
+        <label for="bairro">Bairro:</label>
+        <select id="bairro" aria-required="true">
+          <option value="">-- Selecione --</option>
+          <option value="Alto da Ponte">Alto da Ponte</option>
+          <option value="Altos da Vila Paiva">Altos da Vila Paiva</option>
+          <option value="Altos de Santana">Altos de Santana</option>
+          <option value="Altos do Caete">Altos do Caete</option>
+          <option value="Vila Unidos">Vila Unidos</option>
+          <option value="Caete">Caete</option>
+          <option value="Centro">Centro</option>
+          <option value="Jardim Guimarães">Jardim Guimarães</option>
+          <option value="JD Minas Gerais">JD Minas Gerais</option>
+          <option value="Monte Castelo">Monte Castelo</option>
+          <option value="Petybon">Petybon</option>
+          <option value="Santana">Santana</option>
+          <option value="Telespark">Telespark</option>
+          <option value="Vila Cristina">Vila Cristina</option>
+          <option value="Vila Dirce">Vila Dirce</option>
+          <option value="Vila Jaci">Vila Jaci</option>
+          <option value="Vila Machado">Vila Machado</option>
+          <option value="Vila Paiva">Vila Paiva</option>
+          <option value="Vila São Geraldo">Vila São Geraldo</option>
+          <option value="Vila Sinha">Vila Sinha</option>
+          <option value="rural">Áreas Rurais</option>
+        </select>
+
+        <!-- Forma de Pagamento -->
+        <label for="pagamento">Forma de Pagamento:</label>
+        <select id="pagamento" aria-required="true">
+          <option value="dinheiro">Dinheiro</option>
+          <option value="cartao">Cartão</option>
+          <option value="pix">PIX</option>
+        </select>
+
+        <br /><br />
+        <button id="finalizar-btn" type="button" onclick="finalizarPedido()">
+          <img
+            src="imgs/whatsapp-icon.png"
+            alt="Ícone do WhatsApp"
+            width="20"
+            style="vertical-align: middle; margin-right: 8px"
+          />
+          Finalizar Pedido no WhatsApp
+        </button>
+      </section>
+    </main>
+
+    <!-- Botão flutuante do WhatsApp -->
+    <a
+      href="https://wa.me/5512997481692"
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contato direto pelo WhatsApp"
+    >
+      <img src="imgs/whatsapp-icon.png" alt="Ícone do WhatsApp" width="60" />
+    </a>
+
+    <!-- Botão flutuante para ir ao resumo do pedido -->
+    <a
+      href="#resumo"
+      class="btn-flutuante"
+      aria-label="Ir para o resumo do pedido"
+      >🧾 Fazer Pedido</a
+    >
+
+    <!-- Modal de confirmação -->
+    <div
+      id="modal-confirmacao"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-titulo"
+      aria-describedby="modal-descricao"
+    >
+      <div class="modal-conteudo">
+        <h3 id="modal-titulo">Confirmação do Pedido</h3>
+        <p id="modal-descricao">
+          Deseja realmente enviar este pedido para o WhatsApp?
+        </p>
+        <div class="modal-botoes">
+          <button id="btn-confirmar" type="button">
+            ✅ Confirmar e Enviar
+          </button>
+          <button id="btn-cancelar" type="button">❌ Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-conteudo">
+        <h3>Fulanos Burger</h3>
+        <p>Burger Artesanal de carne Bovina, Suína e de Frango</p>
+        <p>📍 Av. Dr. Numa de Oliveira, Nº 21 – Jd. Telespark</p>
+        <p>📞 (12) 99748-1692</p>
+        <p>⏰ Atendimento: das 18h às 00h</p>
+        <p>
+          Siga no Instagram:
+          <a
+            href="https://instagram.com/fulanos.burger"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @fulanos.burger
+          </a>
+        </p>
+        <p class="assinatura">
+          Desenvolvido por
+          <a
+            href="https://strikeweb0.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            StrikeWeb
+          </a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

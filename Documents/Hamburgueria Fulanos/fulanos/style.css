@@ -1,0 +1,748 @@
+/* Variáveis para manter consistência e facilitar ajustes */
+:root {
+  --cor-laranja: #ff8000;
+  --cor-laranja-escuro: #e67300;
+  --cor-laranja-mais-escuro: #cc6600;
+  --cor-laranja-transp: rgba(255, 128, 0, 0.6);
+  --cor-laranja-transp-mais: rgba(255, 128, 0, 0.9);
+
+  --cor-verde-whatsapp: #25d366;
+  --cor-verde-whatsapp-escuro: #1eb954;
+  --cor-vermelho: #ff4444;
+  --cor-vermelho-escuro: #cc0000;
+
+  --cor-fundo-transp: rgba(0, 0, 0, 0.6);
+  --cor-fundo-transp-mais: rgba(0, 0, 0, 0.7);
+  --cor-fundo-item: #2c2c2c;
+  --cor-texto-claro: #eee;
+  --cor-texto-secundario: #bbb;
+  --cor-texto-secundario-escuro: #ccc;
+  --cor-preto-transp: rgba(0, 0, 0, 0.5);
+}
+
+/* RESET E BASE */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, p, ul, li, figure, figcaption, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: url("imgs/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--cor-texto-claro);
+  line-height: 1.6;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  font-feature-settings: "liga", "kern"; /* Evita salto no conteúdo ao usar fontes web */
+}
+
+@media (max-width: 600px) {
+  body {
+    background-image: url("imgs/background.jpg"); /* imagem menor, porém de boa qualidade */
+    background-position: center bottom; /* ajuste de posição para mobile */
+  }
+}
+
+/* Sombra leve para overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Containers com blur e fundo translúcido - moderno e elegante */
+.header,
+.cardapio,
+.resumo,
+.footer-conteudo,
+section {
+  background-color: var(--cor-fundo-transp);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 2rem 1.25rem;
+  margin: 1.25rem auto;
+  box-shadow: 0 0 20px var(--cor-preto-transp);
+  max-width: 1200px;
+}
+
+@media (max-width: 600px) {
+  body {
+    background-position: center bottom;
+    filter: brightness(1) saturate(1.4);
+    background-color: rgba(0, 0, 0, 0.3); /* fundo mais transparente */
+  }
+  .cardapio, .resumo, .header {
+    background-color: rgba(0, 0, 0, 0.3); /* aumentar contraste para os containers */
+  }
+}
+
+/* HEADER */
+.header {
+  padding: 2rem 1.25rem;
+  box-shadow: 0 2px 12px var(--cor-preto-transp);
+  user-select: none;
+}
+
+.logo {
+  width: 200px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 4px var(--cor-laranja));
+  transition: filter 0.3s ease;
+}
+
+.logo:hover,
+.logo:focus {
+  filter: drop-shadow(0 0 8px var(--cor-laranja));
+  outline: none;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--cor-laranja);
+  text-shadow: 0 0 10px var(--cor-laranja);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.slogan {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  color: var(--cor-texto-secundario);
+  margin-bottom: 2.5rem;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* BOTÕES PRINCIPAIS */
+.btn {
+  background-color: var(--cor-laranja);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.875rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 6px 15px var(--cor-laranja-transp);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--cor-laranja-escuro);
+  transform: scale(1.08);
+  outline-offset: 3px;
+  outline-color: var(--cor-laranja-mais-escuro);
+  box-shadow: 0 8px 22px var(--cor-laranja-transp-mais);
+}
+
+/* CARDÁPIO */
+.cardapio {
+  padding: 3rem 1.25rem;
+  max-width: 1200px;
+}
+
+.cardapio h2 {
+  color: var(--cor-laranja);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: 2rem;
+  text-shadow: 0 0 12px var(--cor-laranja);
+  font-weight: 700;
+}
+
+.categoria {
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.categoria h3 {
+  color: var(--cor-texto-claro);
+  border-bottom: 3px solid var(--cor-laranja);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Grid moderno para itens */
+.categoria-itens {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  justify-content: center; /* Centraliza colunas quando sobra espaço */
+}
+
+@media (max-width: 600px) {
+  .categoria-itens {
+    grid-template-columns: 1fr; /* Apenas uma coluna no celular */
+    justify-items: center;      /* Centraliza os itens dentro das células */
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centraliza verticalmente se necessário */
+  background: var(--cor-fundo-item);
+  padding: 1.5rem 1rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px var(--cor-preto-transp);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  text-align: center;
+  cursor: default;
+  margin: 0 auto; /* Centraliza horizontalmente */
+  max-width: 300px; /* Limita largura em telas pequenas */
+}
+
+@media (max-width: 768px) {
+  .item {
+    width: 90%;
+    margin: 1rem auto;
+  }
+}
+
+.item:hover,
+.item:focus-within {
+  background-color: #333;
+  box-shadow: 0 8px 26px var(--cor-laranja-transp);
+  outline: none;
+}
+
+.item img {
+  width: 140px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: inset 0 0 10px rgba(226, 116, 6, 0.2), /* sombra interna laranja suave */
+              0 8px 24px rgba(0, 0, 0, 0.7); /* sombra externa mais suave e profunda */
+  transition: background-color 0.35s ease, box-shadow 0.35s ease;
+  margin-bottom: 0.75rem;
+  user-select: none;
+}
+
+.item:hover,
+.item:focus-within {
+  background: rgba(50, 40, 10, 0.95); /* muda fundo para um tom mais quente no hover */
+  box-shadow: inset 0 0 15px rgba(255, 140, 20, 0.35),
+              0 12px 30px rgba(255, 128, 0, 0.7);
+  outline: none;
+}
+
+.item p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-texto-claro);
+  margin-bottom: 1rem;
+  user-select: text;
+  line-height: 1.3;
+}
+
+.item button {
+  background-color: var(--cor-laranja);
+  border: none;
+  padding: 0.85rem 1.5rem;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.05rem;
+  box-shadow: 0 5px 15px var(--cor-laranja-transp);
+  transition: background-color 0.25s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  width: 100%;
+  user-select: none;
+}
+
+.item button:hover,
+.item button:focus {
+  background-color: var(--cor-laranja-mais-escuro);
+  transform: scale(1.06);
+  outline-offset: 3px;
+  outline-color: var(--cor-laranja-escuro);
+  box-shadow: 0 7px 20px var(--cor-laranja-transp-mais);
+}
+
+/* RESUMO DO PEDIDO */
+.resumo {
+  padding: 3rem 2rem;
+  background-color: var(--cor-fundo-transp);
+  border-top: 4px solid var(--cor-laranja);
+  max-width: 420px;
+  margin: 3rem auto 5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px var(--cor-laranja-transp);
+  text-align: left;
+  font-feature-settings: "liga", "kern";
+  user-select: none;
+}
+
+.resumo h2 {
+  color: var(--cor-laranja);
+  margin-bottom: 2.5rem;
+  font-size: 2.2rem;
+  text-align: center;
+  text-shadow: 0 0 12px var(--cor-laranja);
+  font-weight: 700;
+}
+
+.resumo ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  max-height: 240px;
+  overflow-y: auto;
+
+  /* Scrollbar personalizada */
+  scrollbar-width: thin;
+  scrollbar-color: var(--cor-laranja) #2d2d2d;
+}
+
+.resumo ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+.resumo ul::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 10px;
+}
+
+.resumo ul::-webkit-scrollbar-thumb {
+  background-color: var(--cor-laranja-transp-mais);
+  border-radius: 10px;
+}
+
+.resumo li {
+  background-color: #2d2d2d;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: inset 0 0 10px var(--cor-laranja-transp-mais);
+  user-select: text;
+}
+
+.resumo li button {
+  background-color: var(--cor-vermelho);
+  border: none;
+  color: white;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: 1rem;
+  user-select: none;
+}
+
+.resumo li button:hover,
+.resumo li button:focus {
+  background-color: var(--cor-vermelho-escuro);
+  outline-offset: 2px;
+  outline-color: var(--cor-vermelho-escuro);
+}
+
+/* Total e seleção */
+.resumo p#total {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 1.5rem 0 1rem;
+  text-align: center;
+  color: var(--cor-laranja);
+  text-shadow: 0 0 15px var(--cor-laranja);
+  user-select: text;
+}
+
+.resumo label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--cor-texto-secundario-escuro);
+  user-select: none;
+}
+
+.resumo select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 0 12px var(--cor-laranja-transp-mais);
+  background-color: #222;
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.resumo select:hover,
+.resumo select:focus {
+  background-color: #333;
+  outline-offset: 3px;
+  outline-color: var(--cor-laranja-escuro);
+}
+
+/* Botão finalizar pedido */
+.resumo button {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: var(--cor-verde-whatsapp);
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px var(--cor-verde-whatsapp);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.resumo button:hover,
+.resumo button:focus {
+  background-color: var(--cor-verde-whatsapp-escuro);
+  transform: scale(1.07);
+  outline-offset: 3px;
+  outline-color: var(--cor-verde-whatsapp-escuro);
+  box-shadow: 0 10px 28px var(--cor-verde-whatsapp-escuro);
+}
+
+/* BOTÕES FLUTUANTES */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px; /* colocado à esquerda */
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 0 6px 18px var(--cor-verde-whatsapp);
+  border-radius: 50%;
+  background-color: var(--cor-verde-whatsapp);
+  padding: 10px;
+  cursor: pointer;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus {
+  transform: scale(1.2);
+  outline-offset: 3px;
+  outline-color: var(--cor-verde-whatsapp-escuro);
+  box-shadow: 0 10px 30px var(--cor-verde-whatsapp-escuro);
+}
+
+/* Botão flutuante laranja */
+.btn-flutuante {
+  position: fixed;
+  bottom: 20px; /* distância do fundo */
+  right: 15px;
+  background-color: var(--cor-laranja);
+  color: #fff;
+  padding: 14px 26px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 8px 24px var(--cor-laranja-transp-mais);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1100;
+  user-select: none;
+}
+
+@media (max-width: 500px) {
+  .btn-flutuante {
+    font-size: 1rem;
+    padding: 8px 16px;
+    bottom: 16px;
+    right: 12px;
+  }
+
+  .whatsapp-float {
+    bottom: 30px;
+    left: 30px;
+    width: 22px;
+    height: 22px;
+    padding: 5px;
+  }
+}
+
+.btn-flutuante:hover,
+.btn-flutuante:focus {
+  background-color: var(--cor-laranja-escuro);
+  transform: scale(1.1);
+  outline-offset: 3px;
+  outline-color: var(--cor-laranja-mais-escuro);
+}
+
+/* TOAST */
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #222;
+  color: var(--cor-laranja);
+  text-align: center;
+  border-radius: 12px;
+  padding: 16px 24px;
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1200;
+  opacity: 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 6px var(--cor-laranja);
+  box-shadow: 0 0 22px var(--cor-laranja);
+  transition: opacity 0.4s ease-in-out;
+  pointer-events: none;
+  user-select: none;
+  font-size: 1.1rem;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1300;
+  inset: 0;
+  background-color: var(--cor-fundo-transp-mais);
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  user-select: none;
+  overflow-y: auto;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-conteudo {
+  background: #222;
+  color: var(--cor-texto-claro);
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 0 0 28px var(--cor-laranja-transp-mais);
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.modal-conteudo h3 {
+  color: var(--cor-laranja);
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  text-shadow: 0 0 12px var(--cor-laranja);
+}
+
+.modal-botoes {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.modal-conteudo button {
+  flex: 1 1 45%;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+#btn-confirmar {
+  background-color: var(--cor-verde-whatsapp);
+  color: #111;
+  box-shadow: 0 7px 22px var(--cor-verde-whatsapp);
+}
+
+#btn-confirmar:hover,
+#btn-confirmar:focus {
+  background-color: var(--cor-verde-whatsapp-escuro);
+  outline-offset: 3px;
+  outline-color: var(--cor-verde-whatsapp-escuro);
+  transform: scale(1.07);
+}
+
+#btn-cancelar {
+  background-color: #444;
+  color: var(--cor-texto-claro);
+  box-shadow: 0 5px 15px #000000bb;
+}
+
+#btn-cancelar:hover,
+#btn-cancelar:focus {
+  background-color: #666;
+  outline-offset: 3px;
+  outline-color: #888;
+  transform: scale(1.07);
+}
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .cardapio {
+    padding: 2rem 1rem;
+  }
+
+  .categoria {
+    max-width: 100%;
+    margin-bottom: 2.25rem;
+  }
+
+  .item {
+    max-width: 100%;
+    padding: 1rem 0.75rem;
+  }
+
+  .item p {
+    font-size: 1.05rem;
+  }
+
+  .resumo {
+    margin: 2rem 1rem 4rem;
+    max-width: 100%;
+  }
+
+  .resumo button {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .resumo button {
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .item button {
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/* FOOTER */
+/* FOOTER */
+.footer {
+  padding: 3rem 1.5rem;
+  color: var(--cor-texto-claro);
+  text-align: center;
+  font-size: 1rem;
+  border-top: 4px solid var(--cor-laranja);
+  box-shadow: 0 -4px 14px rgba(255, 128, 0, 0.35);
+  user-select: none;
+}
+
+.footer h3 {
+  font-size: 1.7rem;
+  color: var(--cor-laranja);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px var(--cor-laranja);
+  font-weight: 700;
+}
+
+.footer a {
+  text-decoration: none; /* sem underline normal */
+  color: var(--cor-laranja);
+  transition: color 0.3s ease;
+}
+
+.footer a:hover,
+.footer a:focus {
+  color: var(--cor-laranja-escuro);
+  outline-offset: 3px;
+}
+
+
+.assinatura {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+
+/* Campo endereço com animação */
+#campo-endereco {
+  margin-top: 10px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+#campo-endereco label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+#campo-endereco input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #ff8000;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #fff;
+}
+
+#campo-endereco input:focus {
+  border-color: #cc6600;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 128, 0, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
