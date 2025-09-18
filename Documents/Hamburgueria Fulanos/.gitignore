@@ -1,1 +1,11 @@
-fulanos/ 
+# Ignorar arquivos do Windows e temporários
+Thumbs.db
+Desktop.ini
+*.log
+
+# Ignorar tudo fora da pasta fulanos
+/*
+
+# Mas não ignorar a pasta do projeto
+!fulanos/
+
